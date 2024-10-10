@@ -40,7 +40,7 @@ phm::witmotion::Serial::~Serial() {
 }
 
 void phm::witmotion::Serial::begin() {
-    int fd = open(dev, O_RDWR | O_NOCTTY);
+    int fd = open(devFile.c_str(), O_RDWR | O_NOCTTY);
     if(isatty(STDIN_FILENO)==0) {
         std::cout << "The standard input was not a terminal device!" << std::endl;
     } else {

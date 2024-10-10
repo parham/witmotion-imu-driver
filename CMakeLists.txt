@@ -44,8 +44,6 @@ add_library(${WMID_LIB_NAME} SHARED
     ${WM_LIB_HEADERS}
     ${WMID_LIB_SOURCES}
     ${WMID_LIB_HEADERS}
-        include/Serial.h
-        src/Serial.cpp
 )
 
 target_include_directories(${WMID_LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -86,3 +84,24 @@ target_link_libraries(${WMID_LIB_NAME} PRIVATE ${Boost_LIBRARIES})
 
 install(TARGETS ${WMID_LIB_NAME} DESTINATION .)
 
+#####################################
+#### Testing Units
+#####################################
+
+## enable testing functionality
+enable_testing()
+
+# test_serial : testing for serial port
+add_test(
+    NAME test_serial
+    COMMAND test_configuration
+)
+
+add_executable(test_serial
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/test_serial.cpp
+    ${WMID_LIB_HEADERS}
+)
+
+target_link_libraries(test_serial
+    PUBLIC ${WMID_LIB_NAME}
+)

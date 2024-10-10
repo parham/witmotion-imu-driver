@@ -31,7 +31,7 @@ namespace phm::witmotion {
         [[nodiscard]] bool isOpened() const { return devHandler >= 0; }
 
     public: // Static methods
-        static Serial build(std::string &, Baudrate baud);
+        static Serial * build(std::string &, Baudrate baud);
     };
 
     typedef Serial * pSerial;
