@@ -44,8 +44,6 @@ add_library(${WMID_LIB_NAME} SHARED
     ${WM_LIB_HEADERS}
     ${WMID_LIB_SOURCES}
     ${WMID_LIB_HEADERS}
-        include/Witmotion.h
-        src/Witmotion.cpp
         include/IMU.h
         src/IMU.cpp
         include/Message.h

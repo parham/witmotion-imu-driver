@@ -89,9 +89,25 @@ void phm::witmotion::IMUDriver::receive() {
         return;
     }
     msg->parse(&packet);
-    std::cout << msg->toString() << std::endl;
+    dispatch(msg);
 //    std::cout << "Code: 0x" << std::hex << static_cast<int16_t>(packet.code) << ", CRC: " << static_cast<int16_t>(packet.crc) << std::endl;
     delete msg;
+}
+
+void phm::witmotion::IMUDriver::dispatch(ReceivePacket * msg) {
+    switch(static_cast<DPCode>(msg->code)) {
+        case Time: imuListener->OnReceive_Time((TimePacket *) msg); break;
+        case Acceleration: imuListener->OnReceive_Acceleration((AccelerationPacket *) msg); break;
+        case AngularVelocity: imuListener->OnReceive_AngularVelocity((AngularVelocityPacket *) msg); break;
+        case Angle: imuListener->OnReceive_Angle((AnglePacket *) msg); break;
+        case Magnetic: imuListener->OnReceive_Magnetic((MagneticPacket *) msg); break;
+        case BarometricAltitude: imuListener->OnReceive_BarometricAltitude((BarometricAltitudePacket *) msg); break;
+        case Location: imuListener->OnReceive_Location((LocationPacket *) msg); break;
+        case GPS: imuListener->OnReceive_GPS((GPSPacket *) msg); break;
+        case Quaternion: imuListener->OnReceive_Quaternion((QuaternionPacket *) msg); break;
+        case GpsAccuracy: imuListener->OnReceive_GpsAccuracy((GPSAccuracyPacket *) msg); break;
+        default: std::cout << "WARNING : Packet is not handled!" << std::endl; break;
+    }
 }
 
 
