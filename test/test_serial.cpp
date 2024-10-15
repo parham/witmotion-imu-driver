@@ -18,9 +18,7 @@ int main () {
     imu.open();
     usleep(1000);
     for (int index = 0; index < 200; index++) {
-        phm::witmotion::DataPacket dp;
-        imu.readPacket(&dp);
-        std::cout << "Code: " << "Code: 0x" << std::hex << static_cast<int16_t>(dp.code) << ", CRC: " << static_cast<int16_t>(dp.crc) << std::endl;
+        imu.receive();
     }
 
     imu.close();

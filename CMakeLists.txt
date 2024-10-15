@@ -48,6 +48,8 @@ add_library(${WMID_LIB_NAME} SHARED
         src/Witmotion.cpp
         include/IMU.h
         src/IMU.cpp
+        include/Message.h
+        src/Message.cpp
 )
 
 target_include_directories(${WMID_LIB_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)

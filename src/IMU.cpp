@@ -40,7 +40,7 @@ void phm::witmotion::IMUDriver::close() {
     deinitSerial();
 }
 
-void phm::witmotion::IMUDriver::readPacket(phm::witmotion::DataPacket * packet) {
+void phm::witmotion::IMUDriver::readPacket(DataPacket * packet) {
     while(isOpened()) {
         // Wait for start signal
         uint8_t dbyte = 0;
@@ -77,6 +77,21 @@ void phm::witmotion::IMUDriver::readPacket(phm::witmotion::DataPacket * packet) 
         packet->crc = crc;
         break;
     }
+}
+
+void phm::witmotion::IMUDriver::receive() {
+    DataPacket packet;
+    // Read a packet from RX serial
+    readPacket(&packet);
+    ReceivePacket * msg = nullptr;
+    build_ReceivePacket(static_cast<DPCode>(packet.code), &msg);
+    if (msg == nullptr) {
+        return;
+    }
+    msg->parse(&packet);
+    std::cout << msg->toString() << std::endl;
+//    std::cout << "Code: 0x" << std::hex << static_cast<int16_t>(packet.code) << ", CRC: " << static_cast<int16_t>(packet.crc) << std::endl;
+    delete msg;
 }
 
 
