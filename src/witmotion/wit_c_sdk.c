@@ -1,4 +1,5 @@
-#include "wit_c_sdk.h"
+
+#include "witmotion/wit_c_sdk.h"
 
 static SerialWrite p_WitSerialWriteFunc = NULL;
 static WitI2cWrite p_WitI2cWriteFunc    = NULL;

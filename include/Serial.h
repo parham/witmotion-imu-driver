@@ -15,7 +15,7 @@ namespace phm::witmotion {
     private:
         std::string devFile;
         Baudrate baudrate;
-        FileHandler devHandler = -1;
+        FileHandler devHandler;
     private:
         Serial(std::string &, Baudrate);
     public:

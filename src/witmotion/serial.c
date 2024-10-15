@@ -1,5 +1,5 @@
-#include "serial.h"
 
+#include "witmotion/serial.h"
 
 int serial_open(unsigned char* dev, unsigned int baud)
 {

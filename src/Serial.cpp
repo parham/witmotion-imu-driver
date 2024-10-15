@@ -47,7 +47,7 @@ void phm::witmotion::Serial::begin() {
         std::cout << "The standard input was successful!" << std::endl;
     }
     struct termios newtio{},oldtio{};
-    if (!tcgetattr(fd,&oldtio)) {
+    if (tcgetattr(fd,&oldtio) != 0) {
         std::cerr << "Setup Serial 1 : " << "tcgetattr( fd,&oldtio) ->" << tcgetattr( fd,&oldtio) << std::endl;
         return;
     }
@@ -94,15 +94,13 @@ void phm::witmotion::Serial::begin() {
     newtio.c_cc[VMIN] = 0;
     tcflush(fd,TCIFLUSH);
 
-    if(!tcsetattr(fd,TCSANOW,&newtio)) {
+    if(tcsetattr(fd,TCSANOW,&newtio) != 0) {
         std::cerr << "COM set error" << std::endl;
         return;
     }
 
     // Check if opening was successful
-    if (fd < 0) {
-        devHandler = fd;
-    }
+    devHandler = fd;
 }
 
 void phm::witmotion::Serial::end() {

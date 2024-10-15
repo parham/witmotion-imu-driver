@@ -31,11 +31,11 @@ set(WMID_LIB_NAME phmwmid)
 #### Source code Definition and Source code indexing
 ######################################
 message("Indexing source files ...")
-file(GLOB_RECURSE WMID_LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-file(GLOB_RECURSE WMID_LIB_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
+file(GLOB_RECURSE WMID_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/*.h)
+file(GLOB_RECURSE WMID_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-file(GLOB_RECURSE WM_LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/witmotion/*.c)
-file(GLOB_RECURSE WM_LIB_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/witmotion/*.h)
+file(GLOB_RECURSE WM_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/witmotion/*.h)
+file(GLOB_RECURSE WM_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/witmotion/*.c)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -44,9 +44,13 @@ add_library(${WMID_LIB_NAME} SHARED
     ${WM_LIB_HEADERS}
     ${WMID_LIB_SOURCES}
     ${WMID_LIB_HEADERS}
+        include/Witmotion.h
+        src/Witmotion.cpp
+        include/IMU.h
+        src/IMU.cpp
 )
 
-target_include_directories(${WMID_LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(${WMID_LIB_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 target_compile_options(${WMID_LIB_NAME}
         PUBLIC
