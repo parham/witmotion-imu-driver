@@ -40,14 +40,14 @@ phm::witmotion::Serial::~Serial() {
 }
 
 void phm::witmotion::Serial::begin() {
-    int fd = open(dev, O_RDWR | O_NOCTTY);
+    int fd = open(devFile.c_str(), O_RDWR | O_NOCTTY);
     if(isatty(STDIN_FILENO)==0) {
         std::cout << "The standard input was not a terminal device!" << std::endl;
     } else {
         std::cout << "The standard input was successful!" << std::endl;
     }
     struct termios newtio{},oldtio{};
-    if (!tcgetattr(fd,&oldtio)) {
+    if (tcgetattr(fd,&oldtio) != 0) {
         std::cerr << "Setup Serial 1 : " << "tcgetattr( fd,&oldtio) ->" << tcgetattr( fd,&oldtio) << std::endl;
         return;
     }
@@ -94,15 +94,13 @@ void phm::witmotion::Serial::begin() {
     newtio.c_cc[VMIN] = 0;
     tcflush(fd,TCIFLUSH);
 
-    if(!tcsetattr(fd,TCSANOW,&newtio)) {
+    if(tcsetattr(fd,TCSANOW,&newtio) != 0) {
         std::cerr << "COM set error" << std::endl;
         return;
     }
 
     // Check if opening was successful
-    if (fd < 0) {
-        devHandler = fd;
-    }
+    devHandler = fd;
 }
 
 void phm::witmotion::Serial::end() {

@@ -31,11 +31,11 @@ set(WMID_LIB_NAME phmwmid)
 #### Source code Definition and Source code indexing
 ######################################
 message("Indexing source files ...")
-file(GLOB_RECURSE WMID_LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-file(GLOB_RECURSE WMID_LIB_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
+file(GLOB_RECURSE WMID_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/*.h)
+file(GLOB_RECURSE WMID_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-file(GLOB_RECURSE WM_LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/witmotion/*.c)
-file(GLOB_RECURSE WM_LIB_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/witmotion/*.h)
+file(GLOB_RECURSE WM_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/witmotion/*.h)
+file(GLOB_RECURSE WM_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/witmotion/*.c)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -44,11 +44,13 @@ add_library(${WMID_LIB_NAME} SHARED
     ${WM_LIB_HEADERS}
     ${WMID_LIB_SOURCES}
     ${WMID_LIB_HEADERS}
-        include/Serial.h
-        src/Serial.cpp
+        include/IMU.h
+        src/IMU.cpp
+        include/Message.h
+        src/Message.cpp
 )
 
-target_include_directories(${WMID_LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(${WMID_LIB_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 target_compile_options(${WMID_LIB_NAME}
         PUBLIC
@@ -86,3 +88,24 @@ target_link_libraries(${WMID_LIB_NAME} PRIVATE ${Boost_LIBRARIES})
 
 install(TARGETS ${WMID_LIB_NAME} DESTINATION .)
 
+#####################################
+#### Testing Units
+#####################################
+
+## enable testing functionality
+enable_testing()
+
+# test_serial : testing for serial port
+add_test(
+    NAME test_serial
+    COMMAND test_configuration
+)
+
+add_executable(test_serial
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/test_serial.cpp
+    ${WMID_LIB_HEADERS}
+)
+
+target_link_libraries(test_serial
+    PUBLIC ${WMID_LIB_NAME}
+)
