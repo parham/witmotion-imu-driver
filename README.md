@@ -17,6 +17,11 @@
 # A Driver for WitMotion IMU Sensors
 A C++ software driver for WitMotion IMU sensor to acquiring the inertial and GPS data as well as commanding and calibrating the sensor.
 
+<div align="center">
+  <img src="docs/witmotion_imu.jpg"/ width="500">
+</div>
+
+
 ## Plan
 
 - Developing a software driver for acquiring the data.
