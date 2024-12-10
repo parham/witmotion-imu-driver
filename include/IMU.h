@@ -1,9 +1,10 @@
 //
-// Created by phm on 14/10/24.
+// Parham Nooralishahi - PHM66
+// @ 2024
 //
 
-#ifndef FODCAMERADRIVER_IMU_H
-#define FODCAMERADRIVER_IMU_H
+#ifndef PHM_WITMOTION_IMU_H
+#define PHM_WITMOTION_IMU_H
 
 #include <string>
 #include <iostream>
@@ -78,4 +79,4 @@ namespace phm::witmotion {
 
 }
 
-#endif //FODCAMERADRIVER_IMU_H
+#endif // PHM_WITMOTION_IMU_H

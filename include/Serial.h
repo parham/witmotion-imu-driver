@@ -1,9 +1,10 @@
 //
-// Created by phm on 10/10/24.
+// Parham Nooralishahi - PHM66
+// @ 2024
 //
 
-#ifndef FODCAMERADRIVER_SERIAL_H
-#define FODCAMERADRIVER_SERIAL_H
+#ifndef PHM_WITMOTION_SERIAL_H
+#define PHM_WITMOTION_SERIAL_H
 
 #include <string>
 
@@ -37,4 +38,4 @@ namespace phm::witmotion {
     typedef Serial * pSerial;
 }
 
-#endif //FODCAMERADRIVER_SERIAL_H
+#endif //PHM_WITMOTION_SERIAL_H

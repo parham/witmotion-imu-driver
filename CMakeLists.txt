@@ -1,13 +1,14 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-project(FODCameraDriver LANGUAGES CXX C)
+project(PHMWitmotionIMU LANGUAGES CXX C)
 
-message(STATUS "=========== WitMotion IMU Driver ============")
-message(STATUS "== Developer  | Parham Nooralishahi        ==")
-message(STATUS "== Contact | parham.nooralishahi@gmail.com ==")
-message(STATUS "== Organization | PHM66                    ==")
-message(STATUS "=============================================")
+message(STATUS "-----------------------------------------------------")
+message(STATUS "|============== WitMotion IMU Driver ===============|")
+message(STATUS "|==== Developer    | Parham Nooralishahi        ====|")
+message(STATUS "|==== Contact      | parham.nooralishahi@gmail.com =|")
+message(STATUS "|==== Organization | PHM66                      ====|")
+message(STATUS "|___________________________________________________|")
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message(FATAL_ERROR "This library is only supports Linux")

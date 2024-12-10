@@ -1,5 +1,6 @@
 //
-// Created by phm on 10/10/24.
+// Parham Nooralishahi - PHM66
+// @ 2024
 //
 
 #include "Serial.h"
@@ -53,7 +54,7 @@ void phm::witmotion::Serial::begin() {
     }
 
     bzero( &newtio, sizeof( newtio ) );
-    newtio.c_cflag  |=  CLOCAL | CREAD;
+    newtio.c_cflag |=  CLOCAL | CREAD;
     newtio.c_cflag |= CS8;
     newtio.c_cflag &= ~PARENB;
 
