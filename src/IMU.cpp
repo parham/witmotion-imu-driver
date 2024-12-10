@@ -1,5 +1,6 @@
 //
-// Created by phm on 14/10/24.
+// Parham Nooralishahi - PHM66
+// @ 2024
 //
 
 #include "IMU.h"

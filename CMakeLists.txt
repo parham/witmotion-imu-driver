@@ -1,13 +1,14 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-project(FODCameraDriver LANGUAGES CXX C)
+project(PHMWitmotionIMU LANGUAGES CXX C)
 
-message(STATUS "=========== WitMotion IMU Driver ============")
-message(STATUS "== Developer  | Parham Nooralishahi        ==")
-message(STATUS "== Contact | parham.nooralishahi@gmail.com ==")
-message(STATUS "== Organization | PHM66                    ==")
-message(STATUS "=============================================")
+message(STATUS "-----------------------------------------------------")
+message(STATUS "|============== WitMotion IMU Driver ===============|")
+message(STATUS "|==== Developer    | Parham Nooralishahi        ====|")
+message(STATUS "|==== Contact      | parham.nooralishahi@gmail.com =|")
+message(STATUS "|==== Organization | PHM66                      ====|")
+message(STATUS "|___________________________________________________|")
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message(FATAL_ERROR "This library is only supports Linux")
@@ -33,9 +34,6 @@ set(WMID_LIB_NAME phmwmid)
 message("Indexing source files ...")
 file(GLOB_RECURSE WMID_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/*.h)
 file(GLOB_RECURSE WMID_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
-
-file(GLOB_RECURSE WM_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/witmotion/*.h)
-file(GLOB_RECURSE WM_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/witmotion/*.c)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
