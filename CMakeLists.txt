@@ -34,9 +34,6 @@ message("Indexing source files ...")
 file(GLOB_RECURSE WMID_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/*.h)
 file(GLOB_RECURSE WMID_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-file(GLOB_RECURSE WM_LIB_HEADERS ${PROJECT_SOURCE_DIR}/include/witmotion/*.h)
-file(GLOB_RECURSE WM_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/witmotion/*.c)
-
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_library(${WMID_LIB_NAME} SHARED
