@@ -11,8 +11,7 @@
 #include "IMU.h"
 
 int main () {
-
-    std::cout << "Test is done successfully." << std::endl;
+    std::cout << "Test is running ..." << std::endl;
     std::string devfile = "/dev/ttyUSB0";
     phm::witmotion::IMUDriver imu(230400, devfile);
     phm::witmotion::NullIMUListener mlistener;
@@ -24,4 +23,5 @@ int main () {
     }
 
     imu.close();
+    std::cout << "Test is done successfully." << std::endl;
 }

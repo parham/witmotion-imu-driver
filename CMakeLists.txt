@@ -38,14 +38,8 @@ file(GLOB_RECURSE WMID_LIB_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_library(${WMID_LIB_NAME} SHARED
-    ${WM_LIB_SOURCES}
-    ${WM_LIB_HEADERS}
     ${WMID_LIB_SOURCES}
     ${WMID_LIB_HEADERS}
-        include/IMU.h
-        src/IMU.cpp
-        include/Message.h
-        src/Message.cpp
 )
 
 target_include_directories(${WMID_LIB_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
@@ -76,11 +70,11 @@ endif()
 #####################################
 
 # Boost
-find_package(Boost REQUIRED)
-SET(Boost_USE_STATIC_LIBS ON)
-FIND_PACKAGE(Boost COMPONENTS log REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-target_link_libraries(${WMID_LIB_NAME} PRIVATE ${Boost_LIBRARIES})
+#find_package(Boost REQUIRED)
+#SET(Boost_USE_STATIC_LIBS ON)
+#FIND_PACKAGE(Boost COMPONENTS log REQUIRED)
+#include_directories(${Boost_INCLUDE_DIRS})
+#target_link_libraries(${WMID_LIB_NAME} PRIVATE ${Boost_LIBRARIES})
 
 #####################################
 
@@ -96,7 +90,7 @@ enable_testing()
 # test_serial : testing for serial port
 add_test(
     NAME test_serial
-    COMMAND test_configuration
+    COMMAND test_serial
 )
 
 add_executable(test_serial

@@ -187,5 +187,3 @@ void build_ReceivePacket (DPCode code, ReceivePacket ** msg) {
             break;
     }
 }
-
-
